@@ -1,0 +1,65 @@
+<main class="portfolio-page">
+  <!-- Portfolio Hero -->
+  <section class="portfolio-hero" style="background-image: url('assets/portfolio/portfolio-hero.png');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">OUR SUCCESS STORIES</span>
+      <h1 class="page-title">Digital Works That Inspire</h1>
+      <div class="breadcrumbs">
+        <a routerLink="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Portfolio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Filter & Grid -->
+  <section class="portfolio-content">
+    <div class="container">
+      <div class="filter-controls">
+        <button (click)="setFilter('all')" [class.active]="currentFilter === 'all'">All Projects</button>
+        <button (click)="setFilter('web')" [class.active]="currentFilter === 'web'">Web Development</button>
+        <button (click)="setFilter('app')" [class.active]="currentFilter === 'app'">App Development</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="project-card" *ngFor="let project of filteredProjects">
+          <div class="project-image" [class.phone-frame]="project.hasFrame">
+            <div class="frame-container" *ngIf="project.hasFrame">
+              <div class="phone-notch"></div>
+              <img [src]="project.image" [alt]="project.title">
+            </div>
+            <img *ngIf="!project.hasFrame" [src]="project.image" [alt]="project.title">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <div class="tags">
+                  <span class="tag" *ngFor="let tag of project.tags">{{tag}}</span>
+                </div>
+                <h3>{{project.title}}</h3>
+                <p>{{project.description}}</p>
+                <a [routerLink]="['/portfolio', project.id]" class="view-project">
+                  View Case Study <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio CTA -->
+  <section class="portfolio-cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-info">
+          <h2>Have a Project in Mind?</h2>
+          <p>Let's collaborate to build something extraordinary together.</p>
+        </div>
+        <div class="cta-btn">
+          <a routerLink="/contact" class="btn-primary-gradient">Let's Talk Business</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

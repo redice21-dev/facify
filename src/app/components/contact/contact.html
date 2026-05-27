@@ -1,0 +1,111 @@
+<main class="contact-page">
+  <!-- Contact Hero -->
+  <section class="contact-hero" style="background-image: url('/contact-hero.png');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="page-title">Contact</h1>
+      <div class="breadcrumbs">
+        <a routerLink="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Contact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Body -->
+  <section class="contact-body">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="say-hello">
+            <div class="hello-icon">
+              <i class="fas fa-user-tie"></i>
+              <div class="message-dot"></div>
+            </div>
+            <span class="badge-blue">SAY HELLO</span>
+          </div>
+          <h2 class="section-title">Get in touch with us</h2>
+          
+          <div class="info-items">
+            <div class="info-item">
+              <div class="icon-circle phone"><i class="fas fa-phone-alt"></i></div>
+              <div class="info-text">
+                <span class="label">Call us now</span>
+                <span class="value">+234 803 735 9707</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="icon-circle email"><i class="fas fa-envelope-open-text"></i></div>
+              <div class="info-text">
+                <span class="label">Support email</span>
+                <span class="value">faith.achigbulem@gmail.com</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="icon-circle address"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="info-text">
+                <span class="label">Our address</span>
+                <span class="value">125, Isheri Oshun Road, Alimosho. Lagos, Nigeria.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-container">
+          <div class="form-card">
+            <div class="form-bg-image" style="background-image: url('/contact-form-bg.png');"></div>
+            <div class="form-content">
+              <h3>Contact us</h3>
+              <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+                <div class="form-group">
+                  <label>Your Name (required)</label>
+                  <input type="text" name="name" [(ngModel)]="formData.name" required placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>Your Email (required)</label>
+                  <input type="email" name="email" [(ngModel)]="formData.email" required placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>Your Message</label>
+                  <textarea name="message" [(ngModel)]="formData.message" rows="5"></textarea>
+                </div>
+                
+                <div class="form-feedback">
+                  <div *ngIf="success" class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> Your message has been sent successfully!
+                  </div>
+                  <div *ngIf="error" class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i> {{error}}
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-submit" [disabled]="submitting">
+                  <span *ngIf="!submitting">Send Message</span>
+                  <span *ngIf="submitting"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="map-placeholder">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126846.59247659!2d3.2921477!3d6.45407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a397c7821!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1715266000000!5m2!1sen!2sng" 
+        width="100%" 
+        height="500" 
+        style="border:0; filter: grayscale(1) invert(0.9) sepia(1) saturate(10) hue-rotate(180deg) opacity(0.8);" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,28 @@
+:root {
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #7dd3fc;
+  --secondary: #0f172a;
+  --accent: #38bdf8;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --white: #ffffff;
+  
+  /* Shared Gradients based on primary blue */
+  --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
