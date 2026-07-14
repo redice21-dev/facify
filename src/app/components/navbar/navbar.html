@@ -1,44 +1,52 @@
-<div class="navbar-container">
-  <nav class="navbar-wrapper">
-    <a routerLink="/" class="navbar-brand">
-      <div class="logo-icon">
-        <img src="mainlogo2.png" alt="Facify Logo" class="brand-img">
+<ng-container *ngIf="global$ | async as global; else loading">
+  <div class="navbar-container" [class.scrolled]="isScrolled">
+    <nav class="navbar-wrapper">
+      <a routerLink="/" class="navbar-brand">
+        <div class="logo-icon">
+          <img src="mainlogo2.png" alt="Facify Logo" class="brand-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">{{ global.navbar.brandName }}</span>
+          <span class="brand-sub">{{ global.navbar.brandSub }}</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" [class.mobile-open]="isMenuOpen">
+        <li class="nav-item" *ngFor="let link of global.navbar.links" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a [routerLink]="link.path" (click)="closeMenu()">{{ link.label }}</a>
+        </li>
+        <li class="nav-item mobile-only">
+          <a routerLink="/contact" class="btn-cta-mobile" (click)="closeMenu()">{{ global.navbar.button }}</a>
+        </li>
+      </ul>
+
+      <div class="navbar-actions desktop-only">
+        <a routerLink="/contact" class="btn-cta">{{ global.navbar.button }}</a>
       </div>
-      <div class="logo-text">
-        <span class="brand-name">FACIFY</span>
-        <span class="brand-sub">WEB & APP DEVELOPMENT</span>
+
+      <button class="mobile-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="navbar-container">
+    <nav class="navbar-wrapper" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <div class="skeleton" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div class="skeleton skeleton-text" style="width: 80px; height: 15px; margin: 0;"></div>
+          <div class="skeleton skeleton-text" style="width: 120px; height: 10px; margin: 0;"></div>
+        </div>
       </div>
-    </a>
-
-    <ul class="nav-links" [class.mobile-open]="isMenuOpen">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/" (click)="closeMenu()">Home</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/about" (click)="closeMenu()">About</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/services" (click)="closeMenu()">Services</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/portfolio" (click)="closeMenu()">Portfolio</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/contact" (click)="closeMenu()">Contact</a>
-      </li>
-      <li class="nav-item mobile-only">
-        <a routerLink="/contact" class="btn-cta-mobile" (click)="closeMenu()">Free Consultation</a>
-      </li>
-    </ul>
-
-    <div class="navbar-actions desktop-only">
-      <a routerLink="/contact" class="btn-cta">Free Consultation</a>
-    </div>
-
-    <button class="mobile-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle Navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-</div>
+      <div style="display: flex; gap: 20px; align-items: center;" class="desktop-only">
+        <div class="skeleton skeleton-text" style="width: 60px; height: 20px; margin: 0;" *ngFor="let i of [1,2,3,4,5]"></div>
+        <div class="skeleton skeleton-btn" style="height: 40px;"></div>
+      </div>
+    </nav>
+  </div>
+</ng-template>

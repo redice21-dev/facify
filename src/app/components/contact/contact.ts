@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, docData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -11,8 +12,10 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
-export class Contact {
+export class Contact implements OnInit {
   private firestore: Firestore = inject(Firestore);
+  content$: Observable<any> | undefined;
+  global$: Observable<any> | undefined;
 
   formData = {
     name: '',
@@ -24,9 +27,14 @@ export class Contact {
   success = false;
   error = '';
 
-  async onSubmit() {
+  ngOnInit() {
+    this.content$ = docData(doc(this.firestore, 'siteContent', 'contact'));
+    this.global$ = docData(doc(this.firestore, 'siteContent', 'global'));
+  }
+
+  async onSubmit(missingFieldsMsg: string) {
     if (!this.formData.name || !this.formData.email) {
-      this.error = 'Please fill in all required fields.';
+      this.error = missingFieldsMsg || 'Please fill in all required fields.';
       return;
     }
 

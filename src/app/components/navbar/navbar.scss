@@ -14,6 +14,22 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    padding: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+
+    .navbar-wrapper {
+      box-shadow: none;
+      border-color: transparent;
+      border-radius: 0;
+      background: transparent;
+      padding: 12px 40px;
+    }
+  }
 }
 
 .navbar-wrapper {
@@ -27,6 +43,7 @@
   width: 92%;
   max-width: 1240px;
   border: 1px solid rgba(15, 23, 42, 0.05);
+  transition: all 0.3s ease;
 }
 
 .navbar-brand {
@@ -173,6 +190,10 @@
 
   .navbar-container {
     padding-top: 0;
+    
+    &.scrolled .navbar-wrapper {
+      padding: 12px 25px;
+    }
   }
 
   .navbar-wrapper {
@@ -236,4 +257,12 @@
     .brand-sub { display: none; }
     .brand-name { font-size: 1.4rem; }
     .nav-links { width: 100%; max-width: none; }
+    
+    .navbar-container.scrolled .navbar-wrapper {
+      padding: 12px 15px;
+    }
+    
+    .navbar-wrapper {
+      padding: 10px 15px;
+    }
 }

@@ -47,7 +47,7 @@
 }
 
 .hero-content {
-  padding: 100px 8% 0 12%;
+  padding: 160px 8% 0 12%;
   z-index: 20;
 }
 
@@ -578,10 +578,15 @@
 }
 
 .chat-floating-btn {
-  position: absolute;
-  bottom: 60px;
-  left: 80px;
-  z-index: 30;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 1000;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
 }
 
 .chat-icon {
@@ -599,12 +604,18 @@
     transition: all 0.3s ease;
     
     &:hover { transform: scale(1.1); }
+
+    &.whatsapp-icon {
+        background: #25D366;
+        color: white;
+        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.45);
+    }
 }
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
     .home-hero { grid-template-columns: 1fr; height: auto; padding-bottom: 80px; }
-    .hero-content { padding: 150px 5% 0; text-align: center; }
+    .hero-content { padding: 180px 5% 0; text-align: center; }
     .hero-title { font-size: 3.5rem; margin: 0 auto 40px; }
     .hero-actions { justify-content: center; }
     .hero-image-container { height: 450px; }
@@ -639,4 +650,115 @@
     .services-section, .about-section, .process-section, .testimonials-section, .bottom-cta-section { padding: 80px 20px; }
     .cta-content h3 { font-size: 2rem; }
     .btn-gradient-long { padding: 18px 40px; font-size: 1rem; width: 100%; justify-content: center; }
+}
+
+/* WhatsApp Modal */
+.whatsapp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.whatsapp-modal {
+  background: var(--white);
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease;
+  
+  .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    
+    .modal-icon {
+      width: 70px;
+      height: 70px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+  }
+  
+  .modal-body {
+    text-align: center;
+    p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+  }
+  
+  .modal-footer {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    
+    button {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .btn-cancel {
+      background: #f1f5f9;
+      color: #64748b;
+      
+      &:hover {
+        background: #e2e8f0;
+        color: #475569;
+      }
+    }
+    
+    .btn-confirm {
+      background: #25D366;
+      color: white;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(37, 211, 102, 0.3);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

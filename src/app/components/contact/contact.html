@@ -1,99 +1,103 @@
 <main class="contact-page">
-  <!-- Contact Hero -->
-  <section class="contact-hero" style="background-image: url('/contact-hero.png');">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="page-title">Contact</h1>
-      <div class="breadcrumbs">
-        <a routerLink="/">Home</a>
-        <i class="fas fa-chevron-right"></i>
-        <span>Contact</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Body -->
-  <section class="contact-body">
-    <div class="container">
-      <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="contact-info">
-          <div class="say-hello">
-            <div class="hello-icon">
-              <i class="fas fa-user-tie"></i>
-              <div class="message-dot"></div>
-            </div>
-            <span class="badge-blue">SAY HELLO</span>
-          </div>
-          <h2 class="section-title">Get in touch with us</h2>
-          
-          <div class="info-items">
-            <div class="info-item">
-              <div class="icon-circle phone"><i class="fas fa-phone-alt"></i></div>
-              <div class="info-text">
-                <span class="label">Call us now</span>
-                <span class="value">+234 803 735 9707</span>
-              </div>
-            </div>
-            
-            <div class="info-item">
-              <div class="icon-circle email"><i class="fas fa-envelope-open-text"></i></div>
-              <div class="info-text">
-                <span class="label">Support email</span>
-                <span class="value">faith.achigbulem@gmail.com</span>
-              </div>
-            </div>
-            
-            <div class="info-item">
-              <div class="icon-circle address"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="info-text">
-                <span class="label">Our address</span>
-                <span class="value">125, Isheri Oshun Road, Alimosho. Lagos, Nigeria.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact Form -->
-        <div class="contact-form-container">
-          <div class="form-card">
-            <div class="form-bg-image" style="background-image: url('/contact-form-bg.png');"></div>
-            <div class="form-content">
-              <h3>Contact us</h3>
-              <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-                <div class="form-group">
-                  <label>Your Name (required)</label>
-                  <input type="text" name="name" [(ngModel)]="formData.name" required placeholder="">
-                </div>
-                <div class="form-group">
-                  <label>Your Email (required)</label>
-                  <input type="email" name="email" [(ngModel)]="formData.email" required placeholder="">
-                </div>
-                <div class="form-group">
-                  <label>Your Message</label>
-                  <textarea name="message" [(ngModel)]="formData.message" rows="5"></textarea>
-                </div>
-                
-                <div class="form-feedback">
-                  <div *ngIf="success" class="alert alert-success">
-                    <i class="fas fa-check-circle"></i> Your message has been sent successfully!
-                  </div>
-                  <div *ngIf="error" class="alert alert-error">
-                    <i class="fas fa-exclamation-circle"></i> {{error}}
-                  </div>
-                </div>
-
-                <button type="submit" class="btn-submit" [disabled]="submitting">
-                  <span *ngIf="!submitting">Send Message</span>
-                  <span *ngIf="submitting"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
-                </button>
-              </form>
-            </div>
-          </div>
+  <ng-container *ngIf="content$ | async as content; else loading">
+    <!-- Contact Hero -->
+    <section class="contact-hero" style="background-image: url('/contact-hero.png');">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="page-title">{{ content.hero.title }}</h1>
+        <div class="breadcrumbs">
+          <a routerLink="/">Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>{{ content.hero.title }}</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Contact Body -->
+    <section class="contact-body">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <div class="say-hello">
+              <div class="hello-icon">
+                <i class="fas fa-user-tie"></i>
+                <div class="message-dot"></div>
+              </div>
+              <span class="badge-blue">{{ content.info.badge }}</span>
+            </div>
+            <h2 class="section-title">{{ content.info.title }}</h2>
+            
+            <div class="info-items">
+              <div class="info-item">
+                <div class="icon-circle phone"><i class="fas fa-phone-alt"></i></div>
+                <div class="info-text">
+                  <span class="label">Call us now</span>
+                  <span class="value">{{ content.info.phone }}</span>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <div class="icon-circle email"><i class="fas fa-envelope-open-text"></i></div>
+                <div class="info-text">
+                  <span class="label">Support email</span>
+                  <span class="value">{{ content.info.email }}</span>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <div class="icon-circle address"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="info-text">
+                  <span class="label">Our address</span>
+                  <span class="value">{{ content.info.address }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-container">
+            <ng-container *ngIf="global$ | async as global">
+              <div class="form-card">
+                <div class="form-bg-image" style="background-image: url('/contact-form-bg.png');"></div>
+                <div class="form-content">
+                  <h3>{{ content.form.title }}</h3>
+                  <form (ngSubmit)="onSubmit(global.contactForm.missingFieldsMsg)" #contactForm="ngForm">
+                    <div class="form-group">
+                      <label>{{ global.contactForm.nameLabel }}</label>
+                      <input type="text" name="name" [(ngModel)]="formData.name" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label>{{ global.contactForm.emailLabel }}</label>
+                      <input type="email" name="email" [(ngModel)]="formData.email" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label>{{ global.contactForm.msgLabel }}</label>
+                      <textarea name="message" [(ngModel)]="formData.message" rows="5"></textarea>
+                    </div>
+                    
+                    <div class="form-feedback">
+                      <div *ngIf="success" class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> {{ global.contactForm.successMsg }}
+                      </div>
+                      <div *ngIf="error" class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i> {{error}}
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" [disabled]="submitting">
+                      <span *ngIf="!submitting">{{ global.contactForm.submitBtn }}</span>
+                      <span *ngIf="submitting"><i class="fas fa-spinner fa-spin"></i> {{ global.contactForm.submittingBtn }}</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
 
   <!-- Map Section -->
   <section class="map-section">
@@ -108,4 +112,18 @@
       </iframe>
     </div>
   </section>
+
+  <ng-template #loading>
+    <div class="skeleton" style="height: 350px; width: 100%; border-radius: 0;"></div>
+    <div style="padding: 80px 5%; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 30px;">
+        <div class="skeleton skeleton-text short"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton" style="height: 80px; width: 100%; border-radius: 12px; margin-top: 20px;" *ngFor="let i of [1,2,3]"></div>
+      </div>
+      <div style="flex: 1;">
+        <div class="skeleton skeleton-card" style="height: 500px;"></div>
+      </div>
+    </div>
+  </ng-template>
 </main>

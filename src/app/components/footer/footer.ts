@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, docData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -11,12 +12,17 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
-export class Footer {
+export class Footer implements OnInit {
   private firestore: Firestore = inject(Firestore);
+  global$: Observable<any> | undefined;
   
   email: string = '';
   submitting: boolean = false;
   success: boolean = false;
+
+  ngOnInit() {
+    this.global$ = docData(doc(this.firestore, 'siteContent', 'global'));
+  }
 
   async onSubscribe() {
     if (!this.email || !this.email.includes('@')) return;
