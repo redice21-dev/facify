@@ -1,3 +1,31 @@
 <app-navbar />
 <router-outlet />
 <app-footer />
+
+<!-- Global Speed Dial Social Media FAB -->
+<div class="social-fab-container" [class.open]="isFabOpen">
+  <div class="fab-actions">
+    <a href="https://wa.me/2348037359707?text=Hello%20Facify%2C%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="fab-action whatsapp" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+      <span class="fab-tooltip">WhatsApp</span>
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="fab-action instagram" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+      <span class="fab-tooltip">Instagram</span>
+    </a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="fab-action linkedin" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+      <span class="fab-tooltip">LinkedIn</span>
+    </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="fab-action twitter" aria-label="Twitter / X">
+      <i class="fab fa-x-twitter"></i>
+      <span class="fab-tooltip">Twitter / X</span>
+    </a>
+  </div>
+
+  <button class="fab-main-btn" (click)="toggleFab()" aria-label="Social Media Menu">
+    <i class="fas fa-comments" *ngIf="!isFabOpen"></i>
+    <i class="fas fa-times" *ngIf="isFabOpen"></i>
+  </button>
+</div>
+
