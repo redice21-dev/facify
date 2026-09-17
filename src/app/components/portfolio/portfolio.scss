@@ -204,14 +204,6 @@
       margin-bottom: 12px;
     }
 
-    p {
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 25px;
-      max-width: 90%;
-    }
-
     .tags {
       display: flex;
       gap: 10px;
@@ -235,22 +227,12 @@
       }
     }
 
-    .view-project {
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: gap 0.3s ease;
-
-      i { font-size: 0.8rem; transition: transform 0.3s ease; }
-
-      &:hover {
-        gap: 15px;
-        color: var(--primary-light);
-        i { transform: translateX(5px); }
-      }
+    p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+      max-width: 95%;
     }
   }
 
