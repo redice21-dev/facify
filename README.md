@@ -1,59 +1,72 @@
 # Facify
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Facify is a responsive web application for a digital agency offering web development, software solutions, and social media marketing services. Built and deployed end-to-end, from UI to backend integration to production hosting.
 
-## Development server
+🔗 **Live site:** [facify.web.app](https://facify.web.app)
 
-To start a local development server, run:
+## Overview
+
+Facify was built to serve as both a working product and a live portfolio piece — a fully functional client-facing web app rather than a static template. It handles routing, dynamic content, and backend data through Firebase.
+
+![Facify Screenshot](./public/screenshot.png)
+
+## Tech Stack
+
+- **Framework:** Angular
+- **Language:** TypeScript
+- **Styling:** HTML5, CSS3
+- **Backend / Data:** Firebase, Firestore
+- **Hosting / Deployment:** Firebase Hosting
+
+## Features
+
+- Responsive design across desktop, tablet, and mobile
+- Angular component-based architecture with client-side routing
+- Firestore integration for storing and retrieving application data
+- Deployed to production via Firebase Hosting
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- [Angular CLI](https://angular.io/cli)
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/redice21-dev/facify.git
+cd facify
+
+# Install dependencies
+npm install
+
+# Run the development server
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Navigate to `http://localhost:4200/` in your browser. The app will reload automatically if you change any source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Deployment
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+This project is deployed using Firebase Hosting:
 
 ```bash
-ng e2e
+firebase deploy
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Author
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Faith Achigbulem**
+Software Developer | Frontend & Mobile Application Developer
+📧 faith.achigbulem@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/faithachigbulem)
