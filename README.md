@@ -3,12 +3,12 @@
 Facify is a responsive web application for a digital agency offering web development, software solutions, and social media marketing services. Built and deployed end-to-end, from UI to backend integration to production hosting.
 
 🔗 **Live site:** [facify.web.app](https://facify.web.app)
+![Facify Screenshot](./public/screenshot.png)
 
 ## Overview
 
 Facify was built to serve as both a working product and a live portfolio piece — a fully functional client-facing web app rather than a static template. It handles routing, dynamic content, and backend data through Firebase.
 
-![Facify Screenshot](./public/screenshot.png)
 
 ## Tech Stack
 
